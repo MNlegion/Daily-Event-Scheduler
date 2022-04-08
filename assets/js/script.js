@@ -30,3 +30,34 @@ function initializeSchedule(){
   localStorage.setItem("todos", JSON.stringify(toDoItems));
 }
 
+//format timeblock colors depending on time
+function setUpTimeBlocks(){
+    $timeBlocks.each(function(){
+      var $thisBlock = $(this);
+      var thisBlockHr = parseInt($thisBlock.attr("data-hour"));
+
+      //add style to time blocks to show where we are in the day
+      if (thisBlockHr == currentHour) {
+        $thisBlock.addClass("present").removeClass("past future");
+      }
+      if (thisBlockHr < currentHour) {
+        $thisBlock.addClass("past").removeClass("present future");
+      }
+      if (thisBlockHr > currentHour) {
+        $thisBlock.addClass("future").removeClass("past present");
+      }
+    });
+}
+
+$(document).ready(function(){
+    
+    setUpTimeBlocks();
+
+    if(!localStorage.getItem("todos")){
+        initializeSchedule();
+    }
+
+});
+
+
+
