@@ -31,7 +31,7 @@ function initializeSchedule(){
 }
 
 //format timeblock colors depending on time
-function setUpTimeBlocks(){
+function setUpTimeDisplay(){
     $timeBlocks.each(function(){
       var $thisBlock = $(this);
       var thisBlockHr = parseInt($thisBlock.attr("data-hour"));
@@ -49,9 +49,28 @@ function setUpTimeBlocks(){
     });
 }
 
+function displaySchedule(){
+  
+    toDoItems = localStorage.getItem("todos");
+    toDoItems = JSON.parse(toDoItems);
+  
+    //assign text to each time section by looping through the arrays with data-hour equal to hour. 
+    //make a variable where [data-hour={hour}] then plug it in to the selector $('[data-hour={hour}')
+    for (var i = 0; i < toDoItems.length; i++){
+      var itemHour = toDoItems[i].hour;
+      var itemText = toDoItems[i].text; 
+     
+      $("[data-hour=" + itemHour + "]").children("textarea").val(itemText);
+    }
+  
+    console.log(toDoItems);
+  }
+
+
+// upon document finishes loading
 $(document).ready(function(){
     
-    setUpTimeBlocks();
+    setUpTimeDisplay();
 
     if(!localStorage.getItem("todos")){
         initializeSchedule();
