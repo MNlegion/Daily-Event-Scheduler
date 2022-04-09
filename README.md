@@ -27,7 +27,7 @@ Create a simple calendar application that allows a user to save events for each 
 ## Website
 [Product of MNlegion](https://mnlegion.github.io/Daily-Event-Scheduler/)
 
-![Event Planner Screenshot](./assets/images/Screenshot%202022-03-27%20142536.png)
+![Event Planner Screenshot](./assets/images/Screenshot%202022-04-09%20172304.png)
 
 ## GitHub
 [MNlegion Profile](https://github.com/MNlegion)
