@@ -30,13 +30,13 @@ function initializeSchedule() {
     localStorage.setItem("todos", JSON.stringify(toDoItems));
 }
 
-//format timeblock colors depending on time
+//schedule colors based on time in day
 function setUpTimeBlocks() {
     $timeBlocks.each(function() {
         var $thisBlock = $(this);
         var thisBlockHr = parseInt($thisBlock.attr("data-hour"));
 
-        //add style to time blocks to show where we are in the day
+        //determining time state in day for color coding purposes
         if (thisBlockHr == currentHour) {
             $thisBlock.addClass("present").removeClass("past future");
         }
@@ -55,7 +55,7 @@ function displaySchedule() {
     toDoItems = JSON.parse(toDoItems);
 
     //assign text to each time section by looping through the arrays with data-hour equal to hour. 
-    //make a variable where [data-hour={hour}] then plug it in to the selector $('[data-hour={hour}')
+    //create variable where [data-hour={hour}] then use it with selector $('[data-hour={hour}')
     for (var i = 0; i < toDoItems.length; i++) {
         var itemHour = toDoItems[i].hour;
         var itemText = toDoItems[i].text;
@@ -73,7 +73,7 @@ function saveHandler() {
     //this saves text information to the text schedule block adjacent to which save button was clicked
     for (var j = 0; j < toDoItems.length; j++) {
         if (toDoItems[j].hour == hourToUpdate) {
-            //set its text to what was added to textarea
+            //text value set to what was entered in textarea within displaySchedule function
             toDoItems[j].text = itemToAdd;
         }
     }
